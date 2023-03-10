@@ -5,9 +5,13 @@ Maintainer: Debian UBports Team <team+ubports@tracker.debian.org>
 Uploaders: Mike Gabriel <sunweaver@debian.org>,
            Gürkan Myczko <gurkan@phys.ethz.ch>,
 Build-Depends: debhelper-compat (= 13),
-               qtbase5-dev (>= 5.5.1~),
-               qtbase5-private-dev (>= 5.5.1~),
-               qtdeclarative5-private-dev (>= 5.5.1~),
+               cmake,
+               libgles-dev,
+               linguist-qt6,
+               qt6-base-dev,
+               qt6-base-private-dev,
+               qt6-declarative-private-dev,
+               qt6-5compat-dev,
                pkg-kde-tools,
 Standards-Version: 4.6.1
 Rules-Requires-Root: no
@@ -15,14 +19,13 @@ Homepage: https://github.com/Swordfish90/qmltermwidget
 Vcs-Git: https://salsa.debian.org/ubports-team/qmltermwidget.git
 Vcs-Browser: https://salsa.debian.org/ubports-team/qmltermwidget/
 
-Package: qml-module-termwidget
+Package: qml6-module-termwidget
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         qmltermwidget-common (>= ${source:Version}),
-Breaks: qml-module-qmltermwidget,
-Replaces: qml-module-qmltermwidget,
+Breaks: qml6-module-qmltermwidget,
+Replaces: qml6-module-qmltermwidget,
 Description: Terminal Widget QML module
  This project is a QML port of qtermwidget. It is written to be as close
  as possible to the upstream project in order to make cooperation
@@ -32,21 +35,3 @@ Description: Terminal Widget QML module
  lomiri-terminal-app.
  .
  This package contains the QML module and also a simple test application.
-
-Package: qmltermwidget-common
-Architecture: all
-Multi-Arch: foreign
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-Breaks: qml-module-qmltermwidget,
-Replaces: qml-module-qmltermwidget,
-Description: Arch-independent files for the Terminal Widget QML module
- This project is a QML port of qtermwidget. It is written to be as close
- as possible to the upstream project in order to make cooperation
- possible.
- .
- At the moment this plugin is powering cool-retro-term and the
- lomiri-terminal-app.
- .
- This package contains architecture-independent files for the
- Terminal Widget QML module (such as color schemes, etc.).
