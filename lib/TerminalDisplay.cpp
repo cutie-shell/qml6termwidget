@@ -775,7 +775,6 @@ void TerminalDisplay::drawCursor(QPainter& painter,
             // it is draw entirely inside 'rect'
             float penWidth = qMax(1,painter.pen().width());
 
-            //
             painter.drawRect(
                 cursorRect.adjusted(
                     + penWidth/2 + fmod(penWidth, 2),
@@ -785,8 +784,7 @@ void TerminalDisplay::drawCursor(QPainter& painter,
                 )
             );
 
-            //if ( hasFocus() )
-            if ( true ) //QMLTermWidget: Always fill the cursor. Even when not in focus.
+            if ( hasFocus() )
             {
                 painter.fillRect(cursorRect, _cursorColor.isValid() ? _cursorColor : foregroundColor);
 
