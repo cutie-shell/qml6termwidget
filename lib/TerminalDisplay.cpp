@@ -868,10 +868,14 @@ void TerminalDisplay::drawCharacters(QPainter& painter,
         // This still allows RTL characters to be rendered in the RTL way.
         painter.setLayoutDirection(Qt::LeftToRight);
 
-        if (_bidiEnabled) {
-            painter.drawText(rect.x(), rect.y() + _fontAscent + _lineSpacing, QString::fromStdWString(text));
-        } else {
-            painter.drawText(rect.x(), rect.y() + _fontAscent + _lineSpacing, LTR_OVERRIDE_CHAR + QString::fromStdWString(text));
+        QString str = QString::fromStdWString(text);
+        if (!_bidiEnabled) 
+            str = LTR_OVERRIDE_CHAR + str;
+
+        auto x = rect.x() - _fontWidth;
+        for (auto chr : str) {
+            painter.drawText(x, rect.y() + _fontAscent + _lineSpacing, chr);
+            x += _fontWidth;
         }
     }
 }
